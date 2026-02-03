@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JP Wine & Liquor</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        header {
+            background: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b') center/cover no-repeat;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        nav {
+            background-color: #111;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #caa24d;
+        }
+
+        section {
+            padding: 50px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .age-gate {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .age-box {
+            background: #222;
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .yes {
+            background-color: #caa24d;
+            color: black;
+        }
+
+        .no {
+            background-color: #555;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="age-gate" id="ageGate">
+    <div class="age-box">
+        <h2>Are you 21 or older?</h2>
+        <p>You must be of legal drinking age to enter this site.</p>
+        <button class="yes" onclick="enterSite()">Yes, I am 21+</button>
+        <button class="no" onclick="leaveSite()">No</button>
+    </div>
+</div>
+
+<header>
+    <h1>JP Wine & Liquor</h1>
+    <p>Your Neighborhood Destination for Wines, Spirits & Pickup Services</p>
+</header>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#products">Products</a>
+    <a href="#visit">Visit Us</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+    <h2 class="section-title">About Us</h2>
+    <p>
+        JP Wine & Liquor proudly serves Centereach and surrounding Long Island communities.
+        Our friendly staff helps you find the perfect wine, spirit, or beer for any occasion.
+        Enjoy the convenience of **pickup services** for your busy schedule.
+    </p>
+</section>
+
+<section id="products">
+    <h2 class="section-title">Our Selection</h2>
+    <div class="categories">
+        <div class="card">
+            <h3>Wine</h3>
+            <p>Red, white, rosé, and sparkling wines from top regions.</p>
+        </div>
+        <div class="card">
+            <h3>Spirits</h3>
+            <p>Whiskey, vodka, rum, tequila, gin, and more.</p>
+        </div>
+        <div class="card">
+            <h3>Beer</h3>
+            <p>Domestic, imported, and craft beer selections.</p>
+        </div>
+        <div class="card">
+            <h3>Pickup Services</h3>
+            <p>Order in advance and pick up conveniently at our store.</p>
+        </div>
+    </div>
+</section>
+
+<section id="visit">
+    <h2 class="section-title">Visit Us</h2>
+    <p><strong>Address:</strong> 1954 Middle Country Road, Centereach, NY</p>
+    <p><strong>Phone:</strong> (555) 123-4567</p>
+    <p><strong>Hours:</strong> Mon–Sat: 10am–10pm | Sun: 12pm–8pm</p>
+
+    <div style="margin-top:30px;">
+        <iframe 
+            src="https://www.google.com/maps?q=1954+Middle+Country+Road+Centereach+NY&output=embed"
+            width="100%" 
+            height="300" 
+            style="border:0; border-radius:8px;" 
+            allowfullscreen 
+            loading="lazy">
+        </iframe>
+    </div>
+</section>
+
+<section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p>Email us at <strong>info@jpwineandliquor.com</strong></p>
+    <p>Follow us on social media for deals, new arrivals, and neighborhood updates.</p>
+</section>
+
+<footer>
+    <p>© 2026 JP Wine & Liquor. All rights reserved.</p>
+</footer>
+
+<script>
+    function enterSite() {
+        document.getElementById("ageGate").style.display = "none";
+    }
+
+    function leaveSite() {
+        window.location.href = "https://www.responsibility.org/";
+    }
+</script>
+
+</body>
+</html>
