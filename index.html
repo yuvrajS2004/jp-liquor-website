@@ -113,6 +113,24 @@
             background-color: #555;
             color: white;
         }
+
+        /* Inventory table styles */
+        #inventory table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+        }
+
+        #inventory th, #inventory td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        #inventory th {
+            background: #111;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -142,8 +160,8 @@
     <h2 class="section-title">About Us</h2>
     <p>
         JP Wine & Liquor proudly serves Centereach and surrounding Long Island communities.
-        Our friendly staff helps you find the perfect wine, spirit, or beer for any occasion.
-        Enjoy the convenience of **pickup services** for your busy schedule.
+        Our friendly staff helps you find the perfect wine or spirit for any occasion.
+        Enjoy the convenience of <strong>pickup services</strong> for your busy schedule.
     </p>
 </section>
 
@@ -159,14 +177,13 @@
             <p>Whiskey, vodka, rum, tequila, gin, and more.</p>
         </div>
         <div class="card">
-            <h3>Beer</h3>
-            <p>Domestic, imported, and craft beer selections.</p>
-        </div>
-        <div class="card">
             <h3>Pickup Services</h3>
             <p>Order in advance and pick up conveniently at our store.</p>
         </div>
     </div>
+
+    <!-- Inventory table will appear here -->
+    <div id="inventory" style="margin-top:40px;"></div>
 </section>
 
 <section id="visit">
@@ -205,6 +222,48 @@
     function leaveSite() {
         window.location.href = "https://www.responsibility.org/";
     }
+
+    // Load CSV inventory (filter out beer if present)
+    fetch('data/import_export_inventorynew.csv')
+        .then(res => res.text())
+        .then(text => {
+            const lines = text.trim().split('\n');
+            lines.shift(); // remove header
+
+            let html = `
+                <h3 style="text-align:center;margin-bottom:20px;">Store Inventory</h3>
+                <table>
+                    <tr>
+                        <th>Item</th>
+                        <th>Department</th>
+                        <th>Price</th>
+                        <th>Qty Prompt</th>
+                    </tr>
+            `;
+
+            lines.forEach(line => {
+                const [itemNum, itemName, deptId, price, qty] = line.split(',');
+
+                // Only include Wine and Spirits
+                if(deptId === '1' || deptId === '2') {
+                    html += `
+                        <tr>
+                            <td>${itemName}</td>
+                            <td>${deptId === '1' ? 'Wine' : 'Spirits'}</td>
+                            <td>$${price}</td>
+                            <td>${qty}</td>
+                        </tr>
+                    `;
+                }
+            });
+
+            html += '</table>';
+            document.getElementById('inventory').innerHTML = html;
+        })
+        .catch(error => {
+            document.getElementById('inventory').innerHTML = '<p>Inventory unavailable.</p>';
+            console.error(error);
+        });
 </script>
 
 </body>
